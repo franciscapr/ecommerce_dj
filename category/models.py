@@ -9,6 +9,10 @@ class Category(models.Model):
     slug = models.CharField(max_length=100, unique=True) # Valor unico
     cat_image = models.ImageField(upload_to='photos/categories', blank=True) # Permite nulos
     
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+    
     # Para ver la data de forma representativa utilizamos el str
     def __str__(self):
         return self.category_name    # Lo que queremos que se nos muestre en la estructura de nuestro models es el cateogry_name
