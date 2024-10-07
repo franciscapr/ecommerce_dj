@@ -1,5 +1,6 @@
 from django.db import models
 from category.models import Category
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
@@ -13,6 +14,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)    # Cuando se elimine la categoria, se realiza una proceso de cascada que tambien elimina los productos relacionados a esta categoria
     created_date = models.DateTimeField(auto_now_add=True)    # Se autogenera la fecha de creación
     modified_date = models.DateTimeField(auto_now=True)    # Fecha de modificación
+    
+    def get_url(self):
+        return reverse('product_detail', args=[self.category.slug, self.slug])
+    
     
     # Listamos los productos por una label especifico
     def __str__(self):
