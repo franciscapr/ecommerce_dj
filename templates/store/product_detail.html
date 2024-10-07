@@ -67,8 +67,15 @@
                             </div>
                         </div>
                         <hr>
-                        <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Agregar al shopping
-                                cart</span> <i class="fas fa-shopping-cart"></i> </a>
+
+                        {% if single_product.stock <= 0 %} <h3>Producto fuera de Stock</h3>
+                            {% else %}
+                            <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Agregar al
+                                    shopping
+                                    cart</span> <i class="fas fa-shopping-cart"></i></a>
+                            {% endif %}
+
+
                     </article>
                 </main>
             </div>
