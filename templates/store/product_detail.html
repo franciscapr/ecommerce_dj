@@ -29,10 +29,11 @@
                             <div class="row">
                                 <div class="item-option-select">
                                     <h6>Seleccionar color</h6>
-                                    <select class="form-control" name="color">
-                                        <option value="rojo">Rojo</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="verde">Verde</option>
+                                    <select class="form-control" name="color" required>
+                                        <option value="" disable selected>Seleccione</option>
+                                        {% for i in single_product.variation_set.colors %}
+                                        <option value="{{ i.variation.value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                        {% endfor %}
                                     </select>
 
                                 </div>
@@ -40,10 +41,11 @@
                             <div class="row">
                                 <div class="item-option-select">
                                     <h6>Selecciona la Talla</h6>
-                                    <select class="form-control" name="talla">
-                                        <option value="small">Small</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="large">Large</option>
+                                    <select class="form-control" name="talla" required>
+                                        <option value="" disable selected>Seleccione</option>
+                                        {% for i in single_product.variation_set.tallas %}
+                                        <option value="{{ i.variation.value | lower}}">{{ i.variation_value | capfirst }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
