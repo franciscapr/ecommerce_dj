@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+import requests
 
 
 def register(request):
@@ -103,6 +104,17 @@ def login(request):
             
             auth.login(request, user)
             messages.success(request, 'Has iniciado sesión exitosamente')
+            
+            url = request.META.get('HTTP_REFERER')
+            try:
+                query = requests.utils.urlparse(url).query    # Capturamos los parametros
+                params = dict(x.split('=') for x in query.split('&'))
+                if 'next' in params:
+                    nextPage = params['next']
+                    return redirect(nextPage)
+            except:
+                return redirect('dashboard')
+            
             return redirect('dashboard')
         else:
             messages.error(request, 'Las credenciales son incorrectas')
