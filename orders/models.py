@@ -48,7 +48,7 @@ class Order(models.Model):
     
     # Creamos la función que represente los records de esta tabla orders dentro de admin
     def __str__(self):
-        return self.user.first_name
+        return self.first_name
     
 # Creamos la tabla Order Product
 class OrderProduct(models.Model):
